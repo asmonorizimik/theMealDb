@@ -1,8 +1,6 @@
 
 import './App.css';
 import React, {useEffect,useState} from 'react'
-// import { add } from 'lodash';
-const _=require('lodash')
 function App() {
   const [data,setData]  = useState([])
   const [search, setSearch] = useState();
@@ -13,7 +11,6 @@ function App() {
     const Response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s`)
     const Result = await Response.json();
     setData(Result.meals)
-    // console.log(data)
   }
 
 
@@ -27,13 +24,6 @@ function App() {
     getData()
   },[])
   
-  // const searchFunction=()=>{
-  //   if (search.length>3){
-  //     let searchItem =_.filter(data,{"strCategory":search})
-  //     setSearchData(searchItem)
-  //   }
-  // }
-
 
   return (
 
@@ -41,7 +31,6 @@ function App() {
       <h1>Welcome to TheMealDB</h1>
      Search : <input type='text' placeholder='type here...' onChange={(event)=>{
         setSearch(event.target.value)
-        // searchFunction()
       }}></input>
       <button onClick={()=>{
         alert("cart")
@@ -50,22 +39,10 @@ function App() {
 
     <div className="main">
       {
-        // search ? searchData.map((item,index)=>{
-        //   return (
-        //     <div className='item-display'>
-        //       <img src={item.strMealThumb} alt=''></img>
-        //       {/* <p>Tag : {item.strTags}</p> */}
-        //       <p>Category : {item.strCategory}</p>
-        //       <p><u>{item.strMeal}</u>      <button>10$</button>   <button>add to cart</button></p>
-              
-        //     </div>
-        //   )
-        // })
       searchData.map((item,index)=>{
         return (
           <div className='item-display'>
             <img src={item.strMealThumb} alt=''></img>
-            {/* <p>Tag : {item.strTags}</p> */}
             <p>Category : {item.strCategory}</p>
             <p><u>{item.strMeal}</u>       <button>10$</button>   <button onClick = {()=>{
               setAddCart(addCart+1)
